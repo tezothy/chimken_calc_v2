@@ -1,0 +1,94 @@
+import React, { useState } from 'react';
+
+const ChickenCalculator = () => {
+  const [dollarAmount, setDollarAmount] = useState('');
+  const [displayAmount, setDisplayAmount] = useState('');
+  const [result, setResult] = useState(null);
+  
+  // Chicken sandwich price - you can update this as needed
+  const CHICKEN_PRICE = 2.29;
+  
+  const handleCalculate = () => {
+    const amount = parseFloat(dollarAmount);
+    if (isNaN(amount) || amount < 0) {
+      setResult(null);
+      return;
+    }
+    
+    // Save the current dollar amount for display purposes
+    setDisplayAmount(dollarAmount);
+    
+    // Calculate total chicken sandwiches (as a decimal)
+    const totalChickens = amount / CHICKEN_PRICE;
+    
+    // Round down to nearest whole number
+    const wholeChickens = Math.floor(totalChickens);
+    
+    // Calculate leftover money
+    const leftoverMoney = amount - (wholeChickens * CHICKEN_PRICE);
+    
+    setResult({
+      wholeChickens,
+      leftoverMoney: leftoverMoney.toFixed(2)
+    });
+  };
+  
+  return (
+    <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-4">
+      <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg">
+        <h1 className="mb-6 text-center text-2xl font-bold text-gray-800">Chicken Calculator</h1>
+        
+        <div className="mb-6">
+          <label htmlFor="dollarAmount" className="mb-2 block text-sm font-medium text-gray-700">
+            Enter Dollar Amount:
+          </label>
+          <div className="relative mt-1 rounded-md shadow-sm">
+            <div className="pointer-events-none absolute inset-y-0 left-0 flex items-center pl-3">
+              <span className="text-gray-500">$</span>
+            </div>
+            <input
+              type="number"
+              id="dollarAmount"
+              className="block w-full rounded-md border border-gray-300 pl-7 pr-12 py-2 text-black font-medium focus:border-blue-500 focus:ring-blue-500 sm:text-sm"
+              placeholder="0.00"
+              value={dollarAmount}
+              onChange={(e) => setDollarAmount(e.target.value)}
+              min="0"
+              step="0.01"
+            />
+          </div>
+        </div>
+        
+        <button
+          onClick={handleCalculate}
+          className="w-full rounded-md bg-yellow-500 py-2 px-4 font-medium text-white hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
+        >
+          Calculate Chickens
+        </button>
+        
+        {result !== null && (
+          <div className="mt-6 rounded-md bg-gray-50 p-4">
+            <div className="flex">
+              <div className="text-sm text-gray-700">
+                <p className="font-medium">Result:</p>
+                <p className="mt-1">
+                  ${displayAmount} equals <span className="font-bold text-yellow-600">{result.wholeChickens}</span> whole chicken sandwiches
+                </p>
+                <p className="mt-2 text-xs text-gray-500">
+                  With ${result.leftoverMoney} left over
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
+        
+        <div className="mt-8 text-center text-xs text-gray-500">
+          <p>Based on an estimated chicken sandwich price of ${CHICKEN_PRICE}</p>
+          <p>Price may vary by location</p>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ChickenCalculator;
