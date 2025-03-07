@@ -36,7 +36,7 @@ const ChickenCalculator = () => {
   return (
     <div className="flex min-h-screen flex-col items-center justify-center bg-gray-100 p-4">
       <div className="w-full max-w-md rounded-lg bg-white p-8 shadow-lg">
-        <h1 className="mb-6 text-center text-2xl font-bold text-gray-800">Chicken Calculator</h1>
+        <h1 className="mb-6 text-center text-2xl font-bold text-gray-800">How Many McChimkens?</h1>
         
         <div className="mb-6">
           <label htmlFor="dollarAmount" className="mb-2 block text-sm font-medium text-gray-700">
@@ -63,7 +63,7 @@ const ChickenCalculator = () => {
           onClick={handleCalculate}
           className="w-full rounded-md bg-yellow-500 py-2 px-4 font-medium text-white hover:bg-yellow-600 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2"
         >
-          Calculate Chickens
+          Calculate
         </button>
         
         {result !== null && (
@@ -72,7 +72,7 @@ const ChickenCalculator = () => {
               <div className="text-sm text-gray-700">
                 <p className="font-medium">Result:</p>
                 <p className="mt-1">
-                  ${displayAmount} equals <span className="font-bold text-yellow-600">{result.wholeChickens}</span> whole chicken sandwiches
+                  Damn, that's like <span className="font-bold text-yellow-600">{result.wholeChickens}</span> McChimkens.
                 </p>
                 <p className="mt-2 text-xs text-gray-500">
                   With ${result.leftoverMoney} left over
