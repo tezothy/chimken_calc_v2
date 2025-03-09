@@ -72,8 +72,7 @@ const ChickenCalculator = () => {
               <div className="text-sm text-gray-700">
                 <p className="font-medium">Result:</p>
                 <p className="mt-1">
-                  Damn, that&apos;s like <span className="font-bold text-yellow-600">{result.wholeChickens}</span> 
-                  McChimkens.</p>
+                  Damn, that&apos;s like <span className="font-bold text-yellow-600">{result.wholeChickens}</span> McChimkens.</p>
                 <p className="mt-2 text-xs text-gray-500">
                   With ${result.leftoverMoney} left over
                 </p>
