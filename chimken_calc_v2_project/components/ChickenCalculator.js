@@ -115,15 +115,15 @@ const ChickenCalculator = () => {
                 <p className="mt-2 text-xs text-gray-500">
                   ...with ${result.leftoverMoney} left over.
                 </p>
+                <div className="mt-8 text-center text-xs text-gray-500">
+                  <p>Based on an estimated chicken sandwich price of ${CHICKEN_PRICE}</p>
+                  <p>Price may vary by location</p>
+                </div>
               </div>
             </div>
           </div>
         )}
         
-        <div className="mt-8 text-center text-xs text-gray-500">
-          <p>Based on an estimated chicken sandwich price of ${CHICKEN_PRICE}</p>
-          <p>Price may vary by location</p>
-        </div>
       </div>
     </div>
   );
