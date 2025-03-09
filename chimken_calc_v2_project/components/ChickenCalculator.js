@@ -129,10 +129,6 @@ const ChickenCalculator = () => {
                 src="public/static/images/mchimken.png" 
                 alt="McChicken sandwich" 
                 className="w-24 h-24 mb-3 object-contain"
-                onError={(e) => {
-                console.log("Image failed to load:", e);
-                 e.target.src = "https://via.placeholder.com/150"; // Fallback image
-                  }}
               />
               <div className="text-sm text-gray-700 text-center">
                 <p className="font-medium">Result:</p>
