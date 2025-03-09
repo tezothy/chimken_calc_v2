@@ -1,12 +1,19 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const ChickenCalculator = () => {
   const [dollarAmount, setDollarAmount] = useState('');
   const [displayAmount, setDisplayAmount] = useState('');
   const [result, setResult] = useState(null);
+  const [showResult, setShowResult] = useState(false);
   
   // Chicken sandwich price - you can update this as needed
   const CHICKEN_PRICE = 2.29;
+  
+  useEffect(() => {
+    if (result !== null) {
+      setShowResult(true);
+    }
+  }, [result]);
   
   const handleInputChange = (e) => {
     let value = e.target.value;
@@ -29,6 +36,9 @@ const ChickenCalculator = () => {
   };
   
   const handleCalculate = () => {
+    // Reset show result to trigger animation on new calculations
+    setShowResult(false);
+    
     const amount = parseFloat(dollarAmount);
     if (isNaN(amount) || amount < 0) {
       setResult(null);
@@ -47,10 +57,13 @@ const ChickenCalculator = () => {
     // Calculate leftover money
     const leftoverMoney = amount - (wholeChickens * CHICKEN_PRICE);
     
-    setResult({
-      wholeChickens,
-      leftoverMoney: leftoverMoney.toFixed(2)
-    });
+    // Small delay to ensure animation triggers properly
+    setTimeout(() => {
+      setResult({
+        wholeChickens,
+        leftoverMoney: leftoverMoney.toFixed(2)
+      });
+    }, 100);
   };
   
   // Format number with commas
@@ -106,26 +119,32 @@ const ChickenCalculator = () => {
         </button>
         
         {result !== null && (
-          <div className="mt-6 rounded-md bg-gray-50 p-4">
-            <div className="flex">
-              <div className="text-sm text-gray-700">
+          <div 
+            className={`mt-6 rounded-md bg-gray-50 p-4 transition-all duration-500 ease-in-out transform ${
+              showResult ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
+            }`}
+          >
+            <div className="flex flex-col items-center">
+              <img 
+                src="/api/placeholder/150/150" 
+                alt="McChicken sandwich" 
+                className="w-24 h-24 mb-3 object-contain"
+              />
+              <div className="text-sm text-gray-700 text-center">
                 <p className="font-medium">Result:</p>
                 <p className="mt-1">
                   Damn, that&apos;s like <span className="font-bold text-yellow-600">{formatNumberWithCommas(result.wholeChickens)}</span> McChimkens.</p>
                 <p className="mt-2 text-xs text-gray-500">
                   ...with ${result.leftoverMoney} left over.
                 </p>
-                
-              </div>
-            </div>
-            <div className="mt-8 text-center text-xs text-gray-500">
+                <div className="mt-4 text-xs text-gray-500 pt-3 border-t border-gray-200">
                   <p>Based on an estimated chicken sandwich price of ${CHICKEN_PRICE}</p>
                   <p>Price may vary by location</p>
                 </div>
+              </div>
+            </div>
           </div>
-          
         )}
-        
       </div>
     </div>
   );
