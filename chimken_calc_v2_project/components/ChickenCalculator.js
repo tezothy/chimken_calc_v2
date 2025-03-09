@@ -126,7 +126,7 @@ const ChickenCalculator = () => {
           >
             <div className="flex flex-col items-center">
               <img 
-                src="/api/placeholder/150/150" 
+                src="public/images/McChicken.webp" 
                 alt="McChicken sandwich" 
                 className="w-24 h-24 mb-3 object-contain"
               />
