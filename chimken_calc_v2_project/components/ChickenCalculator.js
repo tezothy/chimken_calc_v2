@@ -120,7 +120,7 @@ const ChickenCalculator = () => {
         
         {result !== null && (
           <div 
-            className={`mt-6 rounded-md bg-gray-50 p-4 transition-all duration-500 ease-in-out transform ${
+            className={`mt-6 rounded-md bg-gray-50 p-4 transition-all duration-1000 ease-in-out transform ${
               showResult ? "opacity-100 translate-y-0" : "opacity-0 -translate-y-4"
             }`}
           >
